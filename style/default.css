@@ -1,0 +1,31 @@
+@media (min-width: 1280px) {
+  .post_dir_nav_outBox {
+    position: fixed;
+    top: 100px;
+    right: 100px;
+  }
+  .post_dir_nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .post_dir_level0 {
+    position: relative;
+  }
+
+  .post_dir_level1 {
+    position: relative;
+  }
+
+  .post_dir_level2 {
+    position: relative;
+  }
+
+  .post_dir_level3 {
+    position: relative;
+  }
+
+  .post_dir_level4 {
+    position: relative;
+  }
+}
