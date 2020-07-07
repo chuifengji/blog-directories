@@ -1,8 +1,8 @@
 {
   "name": "blog-directories",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a plug-in to add directories to blog posts 为博客文章添加目录",
-  "main": "/dist/index.js",
+  "main": "dist/postDir.js",
   "repository": "https://github.com/chuifengji/blog-directories",
   "author": "Ethan.Lv",
   "license": "MIT"

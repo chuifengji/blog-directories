@@ -5,11 +5,11 @@
  * @version 0.0.1
  * @desc raw/index.ts Responsible for generating directory structure HTML content。
  */
-export class PostDir {
+export default class PostDir {
   postContainer: string; //The article root id tag passed in
   _config: Object;
   postRoot: any; //HtmlElement Article root node
-  directoriesRoot: string; //external tag
+  directoriesRoot: string; //external container  tag
   directories: Array<{
     tagName: string;
     value: string;
@@ -22,7 +22,10 @@ export class PostDir {
     this._config = _config;
     this.directories = [];
     this.postRoot = {};
-    this.directoriesRoot = _config.directoriesRoot;
+    _config.hasOwnProperty("directoriesRoot") &&
+    _config.directoriesRoot.replace(/\s+/g, "") !== ""
+      ? (this.directoriesRoot = _config.directoriesRoot)
+      : (this.directoriesRoot = "undefiend");
     this.htmlList = {};
     this.hierarchy = [];
     this.initConfig(this._config);
@@ -99,14 +102,18 @@ export class PostDir {
   }
   render() {
     let nodes = this.generateHtmlList(),
-      directoriesRoot = document.getElementById(this.directoriesRoot);
-    if (directoriesRoot !== null) {
-      let outBox = document.createElement("div");
-      outBox.className = "post_dir_nav_outBox";
-      outBox.innerHTML = nodes;
-      document.body.appendChild(outBox);
-    } else {
-      throw Error("Invalid external tag!");
+      outBox = document.createElement("div");
+    try {
+      let directoriesRoot = document.getElementById(this.directoriesRoot);
+      if (directoriesRoot !== null) {
+        outBox.className = "post_dir_nav_outBox";
+        outBox.innerHTML = nodes;
+        directoriesRoot.innerHTML = outBox.outerHTML;
+      } else {
+        throw Error("Invalid external tag!");
+      }
+    } catch (e) {
+      throw Error("'directoriesRoot' is not being used correctly!");
     }
   }
 }
