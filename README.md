@@ -6,18 +6,21 @@ blog-directories 是一个为你的博客文章添加目录的 typescript 小插
 
 ## How to use
 
+```
+npm i blog-directories
+```
+
 ```html
 <div id="article_content" dangerouslySetInnerHTML={{ __html: this.props.result.valueHtml }}/></div>
 
-<div id="directories_bo"></div>
+<div id="directories_box"></div>
 ```
 
 ```js
-let PostDir = require("blog-directories");
-
+import PostDir from "blog-directories";
 import "blog-directories/style/default.css";
 
-const postDir = new PostDir.PostDir({
+const postDir = new PostDir({
   postContainer: "article_content",
   hierarchy: ["h2", "h3"],
   directoriesRoot: "directories_box",
